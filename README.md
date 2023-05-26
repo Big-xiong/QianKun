@@ -1,6 +1,6 @@
 # QianKun
 
-node > 18
+node >= 18
 
 主应用 => vite + vue3
 
