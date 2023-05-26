@@ -1,0 +1,31 @@
+diff --git a/node_modules/@vitejs/plugin-vue/dist/index.cjs b/node_modules/@vitejs/plugin-vue/dist/index.cjs
+index 6fd2ab7..50edf25 100644
+--- a/node_modules/@vitejs/plugin-vue/dist/index.cjs
++++ b/node_modules/@vitejs/plugin-vue/dist/index.cjs
+@@ -246,7 +246,7 @@ function resolveTemplateCompilerOptions(descriptor, options, ssr) {
+     preprocessOptions,
+     compilerOptions: {
+       ...options.template?.compilerOptions,
+-      scopeId: hasScoped ? `data-v-${id}` : void 0,
++      scopeId: hasScoped ? `data-v-${id}-vue` : void 0,
+       bindingMetadata: resolvedScript ? resolvedScript.bindings : void 0,
+       expressionPlugins,
+       sourceMap: options.sourceMap
+@@ -2274,7 +2274,7 @@ async function transformMain(code, filename, options, pluginContext, ssr, asCust
+     customBlocksCode
+   ];
+   if (hasScoped) {
+-    attachedProps.push([`__scopeId`, JSON.stringify(`data-v-${descriptor.id}`)]);
++    attachedProps.push([`__scopeId`, JSON.stringify(`data-v-${descriptor.id}-vue`)]);
+   }
+   if (devToolsEnabled || devServer && !isProduction) {
+     attachedProps.push([
+@@ -2569,7 +2569,7 @@ async function transformStyle(code, descriptor, index, options, pluginContext, f
+   const result = await options.compiler.compileStyleAsync({
+     ...options.style,
+     filename: descriptor.filename,
+-    id: `data-v-${descriptor.id}`,
++    id: `data-v-${descriptor.id}-vue`,
+     isProd: options.isProduction,
+     source: code,
+     scoped: block.scoped,
